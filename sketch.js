@@ -8,15 +8,17 @@ function setup() {
     particles.push(new Particle);
   }
 
-
 }
 
 function draw() {
 
-  for (var i = 0; i < particles.length; i++) {
-    particles[i].display();
+  for (var particle of particles) {
+    particle.display();
   }
 
+  // for (var i = 0; i < particles.length; i++) {
+  //   particles[i].display();
+  // }
 
 }
 
