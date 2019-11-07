@@ -1,8 +1,7 @@
 var particles = [];
 
 function setup() {
-  createCanvas(800, 600);
-  background(10, 20, 60);
+  createCanvas(800, 800);
   noStroke();
   smooth();
 
@@ -10,12 +9,11 @@ function setup() {
 }
 
 function draw() {
+  background(0);
 
-  // for (var i = 0; i < 100; i++) {
-  if (frameCount % 60) {
+  if (frameCount % 10) {
     particles.push(new Particle);
   }
-  // }
 
   for (var i = 0; i < particles.length; i++) {
     particles[i].display();
@@ -25,13 +23,16 @@ function draw() {
 
 function Particle() {
   this.xPos = random(width);
-  this.yPos = height;
-  this.cSize = random(5, 20);
+  this.cSize = random(1, 10);
+  this.yPos = height + this.cSize;
   this.cColor = random(255);
+  this.cSpeed = random(50);
 
   this.display = function () {
-    fill(this.cColor);
-    this.yPos = this.yPos - 1;
+    fill(map(this.yPos, 0, height, 100, 255));
+    this.yPos = this.yPos - this.cSpeed;
+    // this.xPos = this.xPos + this.yPos / 200;
+    this.cSpeed = map(this.yPos, 0, height, 0, 20)
     circle(this.xPos, this.yPos, this.cSize);
   }
 }
