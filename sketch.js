@@ -2,64 +2,36 @@ var particles = [];
 
 function setup() {
   createCanvas(800, 600);
+  background(10, 20, 60);
+  noStroke();
+  smooth();
+
 
 }
-
-var direction = true;
 
 function draw() {
-  background(100);
 
-  // translate(width / 2, height / 2);
-  // scale(0.5);
-
-  if (frameCount % 10 == 0) {
-
-    particles.push(new Particle());
-
+  // for (var i = 0; i < 100; i++) {
+  if (frameCount % 60) {
+    particles.push(new Particle);
   }
+  // }
 
-  for (var particle of particles) {
-    particle.display();
+  for (var i = 0; i < particles.length; i++) {
+    particles[i].display();
   }
 
 }
 
+function Particle() {
+  this.xPos = random(width);
+  this.yPos = height;
+  this.cSize = random(5, 20);
+  this.cColor = random(255);
 
-class Particle {
-  constructor() {
-    this.xPos = 0;
-    this.yPos = height;
-    this.amt = 1;
-    this.amt = random(0, 0.5);
-    this.rr = random(255);
-    this.rg = random(255);
-    this.rb = random(255)
+  this.display = function () {
+    fill(this.cColor);
+    this.yPos = this.yPos - 1;
+    circle(this.xPos, this.yPos, this.cSize);
   }
-
-
-  display() {
-    stroke(this.rr, this.rg, this.rb);
-    // push();
-    // translate(width / 2, 0);
-    print(this.xPos);
-    circle(this.xPos, this.yPos, 10);
-
-    // pop();
-    this.yPos -= 1;
-    this.xPos = sqrt(this.yPos / this.amt) + width / 2;
-
-
-
-    // this.xPos = this.xPos * this.amt;
-
-    // if (this.direction) {
-    //   this.amt = this.amt / 1.002;
-    // }
-
-    // if (!this.direction) {
-    //   this.amt = this.amt * 1.002;
-    // }
-  }
-
 }
